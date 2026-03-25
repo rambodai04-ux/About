@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Irab Baral — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+
+/* ─── THEME VARIABLES ─────────────────────────── */
+[data-theme="dark"] {
+  --bg:         #0D0D0D;
+  --bg-card:    #161616;
+  --bg-alt:     #111111;
+  --border:     rgba(201, 168, 76, 0.18);
+  --gold:       #C9A84C;
+  --gold-soft:  #E5C97A;
+  --gold-muted: #8B6914;
+  --text-h:     #F5F0E8;
+  --text-body:  #C8C0B0;
+  --text-muted: #7A7265;
+  --nav-bg:     rgba(13,13,13,0.94);
+  --toggle-bg:  #222;
+  --shadow:     0 4px 32px rgba(0,0,0,0.45);
+}
+
+[data-theme="light"] {
+  --bg:         #FAF8F4;
+  --bg-card:    #FFFFFF;
+  --bg-alt:     #F2EFE8;
+  --border:     rgba(139, 105, 20, 0.18);
+  --gold:       #9A6F1A;
+  --gold-soft:  #7A5510;
+  --gold-muted: #B8921E;
+  --text-h:     #1A1610;
+  --text-body:  #3D3826;
+  --text-muted: #7A7060;
+  --nav-bg:     rgba(250,248,244,0.94);
+  --toggle-bg:  #E8E4DA;
+  --shadow:     0 4px 32px rgba(0,0,0,0.10);
+}
+
+/* ─── RESET & BASE ────────────────────────────── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text-body);
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-x: hidden;
+  transition: background 0.35s ease, color 0.35s ease;
+}
+
+/* ─── NAVIGATION ──────────────────────────────── */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 200;
+  padding: 0 60px;
+  height: 68px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--nav-bg);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  transition: background 0.35s ease;
+}
+
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--gold);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: color 0.25s;
+}
+
+.nav-links a.active,
+.nav-links a:hover { color: var(--gold); }
+
+/* ─── THEME TOGGLE ────────────────────────────── */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  cursor: pointer;
+  background: var(--toggle-bg);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  padding: 6px 14px;
+  transition: background 0.3s;
+}
+
+.theme-toggle-icon { font-size: 14px; line-height: 1; user-select: none; }
+
+.theme-toggle-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  user-select: none;
+}
+
+/* ─── HERO ────────────────────────────────────── */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  padding: 100px 60px 60px;
+  gap: 60px;
+  position: relative;
+}
+
+.hero-eyebrow {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.2s forwards;
+}
+
+.hero-name {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(52px, 6.5vw, 88px);
+  font-weight: 700;
+  line-height: 1.05;
+  color: var(--text-h);
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.4s forwards;
+}
+
+.hero-name em { font-style: italic; color: var(--gold); }
+
+.hero-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(17px, 2vw, 24px);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--text-muted);
+  margin-top: 16px;
+  margin-bottom: 32px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.6s forwards;
+}
+
+.hero-divider {
+  width: 56px;
+  height: 2px;
+  background: var(--gold);
+  margin-bottom: 28px;
+  border-radius: 2px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.75s forwards;
+}
+
+.hero-bio {
+  font-size: 16px;
+  line-height: 1.85;
+  color: var(--text-body);
+  max-width: 460px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.9s forwards;
+}
+
+.hero-cta {
+  margin-top: 44px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 1.1s forwards;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  padding: 14px 34px;
+  background: var(--gold);
+  color: #fff;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  border: 2px solid var(--gold);
+  transition: opacity 0.2s;
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  padding: 14px 34px;
+  background: transparent;
+  color: var(--gold);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  border: 2px solid var(--gold);
+  transition: opacity 0.2s;
+}
+
+/* ─── HERO VISUAL ─────────────────────────────── */
+.hero-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  animation: fadeIn 1.2s ease 0.6s forwards;
+}
+
+.monogram-wrap {
+  position: relative;
+  width: 300px;
+  height: 300px;
+}
+
+.ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+}
+
+.ring-1 { inset: 0; }
+.ring-2 { inset: 18px; border-color: rgba(201,168,76,0.12); animation: spin 50s linear infinite; }
+.ring-3 { inset: 36px; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.monogram-center {
+  position: absolute;
+  inset: 54px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow);
+}
+
+.mono-letters {
+  font-family: 'Playfair Display', serif;
+  font-size: 62px;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.mono-sub {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+
+/* ─── TICKER ──────────────────────────────────── */
+.ticker {
+  background: var(--bg-alt);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.ticker-track {
+  display: inline-flex;
+  animation: tickerMove 24s linear infinite;
+}
+
+.ticker-item {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 0 44px;
+}
+
+.ticker-item .dot { color: var(--gold); margin-right: 10px; }
+
+@keyframes tickerMove {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ─── SECTION COMMONS ─────────────────────────── */
+section { padding: 100px 60px; }
+
+.section-tag {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+.section-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(34px, 4vw, 52px);
+  font-weight: 700;
+  color: var(--text-h);
+  line-height: 1.15;
+  margin-bottom: 56px;
+}
+
+.section-heading em { font-style: italic; color: var(--gold); }
+
+/* ─── ABOUT ───────────────────────────────────── */
+.about-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.about-sticky { position: sticky; top: 100px; }
+
+.stat-row {
+  margin-bottom: 36px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid var(--border);
+}
+.stat-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 50px;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.stat-desc {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-top: 6px;
+}
+
+.about-text p {
+  font-size: 16px;
+  line-height: 1.9;
+  color: var(--text-body);
+  margin-bottom: 22px;
+}
+.about-text p:last-child { margin-bottom: 0; }
+
+/* ─── SKILLS ──────────────────────────────────── */
+.skills-wrap {
+  background: var(--bg-alt);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.skills-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.skill-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 44px;
+  box-shadow: var(--shadow);
+}
+
+.skill-box-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 21px;
+  font-weight: 600;
+  color: var(--text-h);
+  margin-bottom: 28px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--border);
+}
+
+.skill-items {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.skill-items li {
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--text-body);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.skill-items li::before {
+  content: '';
+  width: 22px;
+  height: 2px;
+  background: var(--gold);
+  flex-shrink: 0;
+  border-radius: 2px;
+}
+
+/* ─── EXPERIENCE ──────────────────────────────── */
+.timeline {
+  position: relative;
+  padding-left: 44px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--gold-muted), transparent);
+  border-radius: 2px;
+}
+
+.tl-item {
+  position: relative;
+  margin-bottom: 64px;
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.tl-item.visible { opacity: 1; transform: translateY(0); }
+
+.tl-dot {
+  position: absolute;
+  left: -49px;
+  top: 7px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--gold);
+  outline: 3px solid var(--bg);
+  box-shadow: 0 0 0 1px var(--gold-muted);
+}
+
+.tl-date {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.tl-role {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--text-h);
+  margin-bottom: 4px;
+}
+
+.tl-org {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.tl-tasks { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+.tl-tasks li {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--text-body);
+  padding-left: 20px;
+  position: relative;
+}
+
+.tl-tasks li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 11px;
+  width: 10px;
+  height: 2px;
+  background: var(--gold-muted);
+  border-radius: 1px;
+}
+
+/* ─── PROJECTS ────────────────────────────────── */
+.project-wrap {
+  background: var(--bg-alt);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.project-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 60px;
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card::after {
+  content: '';
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 260px;
+  height: 260px;
+  background: radial-gradient(circle, rgba(201,168,76,0.06), transparent 70%);
+  pointer-events: none;
+}
+
+.project-sponsor {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+
+.project-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--text-h);
+  margin-bottom: 24px;
+}
+
+.project-desc {
+  font-size: 16px;
+  line-height: 1.9;
+  color: var(--text-body);
+  max-width: 700px;
+  margin-bottom: 36px;
+}
+
+.tech-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+
+.tag {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 7px 18px;
+}
+
+/* ─── EDUCATION ───────────────────────────────── */
+.edu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.edu-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 44px 36px;
+  box-shadow: var(--shadow);
+  position: relative;
+}
+
+.edu-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 20px; right: 20px;
+  height: 3px;
+  background: linear-gradient(to right, transparent, var(--gold-muted), transparent);
+  border-radius: 0 0 3px 3px;
+}
+
+.edu-year {
+  font-family: 'Playfair Display', serif;
+  font-size: 42px;
+  font-weight: 700;
+  color: var(--border);
+  line-height: 1;
+  margin-bottom: 18px;
+}
+
+.edu-degree {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-h);
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.edu-school {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+
+.edu-loc { font-size: 13px; color: var(--text-muted); }
+
+/* ─── CONTACT ─────────────────────────────────── */
+.contact-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.contact-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 36px 30px;
+  box-shadow: var(--shadow);
+}
+
+.contact-card-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+.contact-card-value {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-h);
+}
+
+.contact-card-value a { color: var(--text-h); text-decoration: none; }
+
+/* ─── FOOTER ──────────────────────────────────── */
+footer {
+  background: var(--bg-alt);
+  border-top: 1px solid var(--border);
+  padding: 30px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--gold);
+}
+
+.footer-note { font-size: 13px; color: var(--text-muted); letter-spacing: 0.04em; }
+
+/* ─── REVEAL ──────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ─── SCROLLBAR ───────────────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--gold-muted); border-radius: 3px; }
+
+/* ─── RESPONSIVE ──────────────────────────────── */
+@media (max-width: 960px) {
+  nav { padding: 0 24px; }
+  .nav-links { display: none; }
+  .hero { grid-template-columns: 1fr; padding: 100px 28px 60px; }
+  .hero-visual { display: none; }
+  section { padding: 72px 28px; }
+  .about-grid { grid-template-columns: 1fr; gap: 48px; }
+  .about-sticky { position: static; }
+  .skills-cols { grid-template-columns: 1fr; }
+  .edu-grid { grid-template-columns: 1fr; }
+  .contact-cards { grid-template-columns: 1fr; }
+  .project-card { padding: 36px 28px; }
+  footer { flex-direction: column; gap: 10px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#home">Irab Baral</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="theme-toggle" id="themeBtn" aria-label="Toggle theme">
+      <span class="theme-toggle-icon" id="themeIcon">&#9728;&#65039;</span>
+      <span class="theme-toggle-label" id="themeLabel">Light</span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <span class="hero-eyebrow">Information Technology Professional</span>
+    <h1 class="hero-name">Irab<br><em>Baral</em></h1>
+    <p class="hero-subtitle">IT Student</p>
+    <div class="hero-divider"></div>
+    <p class="hero-bio">A driven IT student combining technical expertise with proven leadership experience. Pursuing a Bachelor of IT — Cybersecurity at Charles Darwin University while building on three years of supervisory excellence in Sydney.</p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn-primary">Get in Touch</a>
+      <a href="#experience" class="btn-secondary">View Experience</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="monogram-wrap">
+      <div class="ring ring-1"></div>
+      <div class="ring ring-2"></div>
+      <div class="ring ring-3"></div>
+      <div class="monogram-center">
+        <div class="mono-letters">IB</div>
+        <div class="mono-sub">Darwin, NT</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="ticker-item"><span class="dot">&#9670;</span>Cybersecurity</span>
+    <span class="ticker-item"><span class="dot">&#9670;</span>IT Service Desk</span>
+    <span class="ticker-item"><span class="dot">&#9670;</span>Web Development</span>
+    <span class="ticker-item"><span class="dot">&#9670;</span>Network Troubleshooting</span>
+    <span class="ticker-item"><span class="dot">&#9670;</span>Team Leadership</span>
+    <span class="ticker-item"><span class="dot">&#9670;</span>Agile Methodology</span>
+    <span class="ticker-item"><span class="dot">&#9670;</span>SQL &amp; Databases</span>
+    <span class="ticker-item"><span class="dot">&#9670;</span>Customer Service</span>
+    <span class="ticker-item"><span class="dot">&#9670;</span>Cybersecurity</span>
+    <span class="ticker-item"><span class="dot">&#9670;</span>IT Service Desk</span>
+    <span class="ticker-item"><span class="dot">&#9670;</span>Web Development</span>
+    <span class="ticker-item"><span class="dot">&#9670;</span>Network Troubleshooting</span>
+    <span class="ticker-item"><span class="dot">&#9670;</span>Team Leadership</span>
+    <span class="ticker-item"><span class="dot">&#9670;</span>Agile Methodology</span>
+    <span class="ticker-item"><span class="dot">&#9670;</span>SQL &amp; Databases</span>
+    <span class="ticker-item"><span class="dot">&#9670;</span>Customer Service</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-sticky">
+      <div class="reveal">
+        <div class="section-tag">About Me</div>
+        <h2 class="section-heading">The<br><em>Profile</em></h2>
+      </div>
+      <div class="reveal">
+        <div class="stat-row">
+          <div class="stat-num">3+</div>
+          <div class="stat-desc">Years Leadership</div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-num">20+</div>
+          <div class="stat-desc">Employees Trained / Year</div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-num">2</div>
+          <div class="stat-desc">Concurrent Supervisory Roles</div>
+        </div>
+      </div>
+    </div>
+    <div class="about-text reveal">
+      <p>Irab Baral is a motivated and results-oriented information technology student based in Darwin, Northern Territory. Currently completing a Bachelor of Information Technology with a specialisation in Cybersecurity at Charles Darwin University, he combines rigorous academic study with substantial real-world professional experience.</p>
+      <p>His background spans the technical discipline of IT — from networking and programming to database management and user experience design — and the human discipline of leadership, having managed bar and cafe operations in Sydney where he oversaw recruitment, trained upward of twenty employees annually, and maintained quality standards at scale.</p>
+      <p>Irab is seeking an entry-level position in IT Service Desk or Customer Service, where his dual proficiency in technical problem-solving and people-centred communication can be applied to meaningful effect. He is open, adaptable, and earnest in his commitment to professional growth.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="skills-wrap">
+  <div class="reveal">
+    <div class="section-tag">Capabilities</div>
+    <h2 class="section-heading">Skills &amp; <em>Expertise</em></h2>
+  </div>
+  <div class="skills-cols">
+    <div class="skill-box reveal">
+      <div class="skill-box-title">Technical Skills</div>
+      <ul class="skill-items">
+        <li>Microsoft Office Suite — Advanced Excel</li>
+        <li>Microsoft Visio</li>
+        <li>Networking &amp; System Troubleshooting</li>
+        <li>Hardware Knowledge — Component Level</li>
+        <li>HTML, CSS, Bootstrap, JavaScript</li>
+        <li>Node.js</li>
+        <li>Version Control — Git</li>
+        <li>UX &amp; Interface Design</li>
+        <li>Agile &amp; Scrum Methodology</li>
+        <li>SQL — MS Access, MySQL</li>
+      </ul>
+    </div>
+    <div class="skill-box reveal">
+      <div class="skill-box-title">Professional Skills</div>
+      <ul class="skill-items">
+        <li>Excellent Customer Service</li>
+        <li>Multitasking Under Pressure</li>
+        <li>Verbal &amp; Written Communication</li>
+        <li>Time Management</li>
+        <li>Team Leadership &amp; Mentoring</li>
+        <li>Staff Recruitment &amp; Training</li>
+        <li>Budget &amp; Revenue Oversight</li>
+        <li>Report Writing &amp; Documentation</li>
+        <li>Regulatory Compliance</li>
+        <li>Friendly &amp; Outgoing Disposition</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="reveal">
+    <div class="section-tag">Career History</div>
+    <h2 class="section-heading">Professional <em>Experience</em></h2>
+  </div>
+  <div class="timeline">
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-date">April 2022 — February 2025</div>
+      <div class="tl-role">Bar Supervisor</div>
+      <div class="tl-org">Barangaroo, Sydney, NSW</div>
+      <ul class="tl-tasks">
+        <li>Set, monitored, and assessed standard procedures for staff performance, duties, and responsibilities, including estimation of drinks and beverage costs.</li>
+        <li>Supervised inventory of food and drink supplies and equipment status, ensuring timely restocking and repair.</li>
+        <li>Oversaw business revenue, maintained acceptable profit margins, and adjusted service pricing accordingly.</li>
+        <li>Ensured all food and beverage preparation met established quality, portion, and sanitary standards.</li>
+        <li>Coordinated with the Food and Beverage team to create and update menus on a quarterly basis.</li>
+        <li>Interviewed, hired, and trained new employees; managed schedules, shifts, and employee leave.</li>
+        <li>Maintained customer service quality and provided appropriate remediation when standards were not met.</li>
+      </ul>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-date">November 2022 — February 2025</div>
+      <div class="tl-role">Cafe Supervisor</div>
+      <div class="tl-org">Bondi, Sydney, NSW</div>
+      <ul class="tl-tasks">
+        <li>Performed effectively in a fast-paced and rapidly evolving operational environment.</li>
+        <li>Worked both independently and collaboratively to resolve challenges with efficiency and composure.</li>
+        <li>Organised and prioritised workload to consistently meet deadlines and quality benchmarks.</li>
+        <li>Led recruitment and training initiatives for more than twenty employees per year.</li>
+      </ul>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-date">February 2022 — November 2022</div>
+      <div class="tl-role">Front Desk Assistant</div>
+      <div class="tl-org">Accommodation Services</div>
+      <ul class="tl-tasks">
+        <li>Ensured full compliance with all applicable regulations, policies, and laws.</li>
+        <li>Responded to guest and operational challenges with strong troubleshooting ability and professionalism.</li>
+        <li>Prepared and submitted daily and weekly reports to upper management, including issues and guest feedback.</li>
+        <li>Managed all accommodation-related email correspondence from guests and internal management.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="project-wrap">
+  <div class="reveal">
+    <div class="section-tag">Featured Work</div>
+    <h2 class="section-heading">University <em>Projects</em></h2>
+  </div>
+  <div class="project-card reveal">
+    <div class="project-sponsor">Sponsor — Department of Health, NT</div>
+    <div class="project-title">Digital Toolkit</div>
+    <p class="project-desc">
+      The Department of Health lacked a centralised resource to inform design executions across its digital products. Customers seeking guidance on building web services had no single authoritative reference point, resulting in duplication and fragmented information across teams.<br><br>
+      The team developed a platform-agnostic web service serving as a unified repository of usable standards, components, patterns, guides, and templates. The Digital Toolkit delivers consistent, centralised guidance across all Department digital products — preventing duplication and enabling faster, better-quality delivery.
+    </p>
+    <div class="tech-tags">
+      <span class="tag">Node.js</span>
+      <span class="tag">HTML</span>
+      <span class="tag">CSS</span>
+      <span class="tag">Git</span>
+      <span class="tag">Visual Studio Code</span>
+      <span class="tag">Static Web</span>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="reveal">
+    <div class="section-tag">Academic Background</div>
+    <h2 class="section-heading">Education &amp; <em>Credentials</em></h2>
+  </div>
+  <div class="edu-grid">
+    <div class="edu-card reveal">
+      <div class="edu-year">2024—</div>
+      <div class="edu-degree">Bachelor of Information Technology — Cybersecurity</div>
+      <div class="edu-school">Charles Darwin University</div>
+      <div class="edu-loc">Darwin, Northern Territory, AU</div>
+    </div>
+    <div class="edu-card reveal">
+      <div class="edu-year">2024</div>
+      <div class="edu-degree">Diploma in Information Technology</div>
+      <div class="edu-school">Kings Ford International Institute</div>
+      <div class="edu-loc">Sydney, New South Wales, AU</div>
+    </div>
+    <div class="edu-card reveal">
+      <div class="edu-year">2020</div>
+      <div class="edu-degree">High School Certificate — Science &amp; IT</div>
+      <div class="edu-school">Shree Mahendra Secondary School</div>
+      <div class="edu-loc">Ratwamai, Nepal</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="reveal">
+    <div class="section-tag">Get in Touch</div>
+    <h2 class="section-heading">Let's <em>Connect</em></h2>
+  </div>
+  <div class="contact-cards reveal">
+    <div class="contact-card">
+      <div class="contact-card-label">Phone</div>
+      <div class="contact-card-value"><a href="tel:0452538557">0452 538 557</a></div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-card-label">Email</div>
+      <div class="contact-card-value"><a href="mailto:RamboDai04@gmail.com">RamboDai04@gmail.com</a></div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-card-label">Location</div>
+      <div class="contact-card-value">Darwin, NT 0810, AU</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">Irab Baral</div>
+  <div class="footer-note">Darwin, NT &nbsp;&#183;&nbsp; Information Technology &nbsp;&#183;&nbsp; 2025</div>
+</footer>
+
+<script>
+  // Theme Toggle
+  const html = document.documentElement;
+  const btn = document.getElementById('themeBtn');
+  const icon = document.getElementById('themeIcon');
+  const label = document.getElementById('themeLabel');
+
+  function setTheme(t) {
+    html.setAttribute('data-theme', t);
+    if (t === 'dark') {
+      icon.innerHTML = '&#9728;&#65039;';
+      label.textContent = 'Light';
+    } else {
+      icon.innerHTML = '&#127761;';
+      label.textContent = 'Dark';
+    }
+    try { localStorage.setItem('theme', t); } catch(e){}
+  }
+
+  btn.addEventListener('click', () => {
+    setTheme(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  });
+
+  try {
+    const saved = localStorage.getItem('theme');
+    if (saved) setTheme(saved);
+  } catch(e){}
+
+  // Scroll Reveal
+  const allReveal = document.querySelectorAll('.reveal, .tl-item');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  allReveal.forEach(el => obs.observe(el));
+
+  // Stagger grid children
+  document.querySelectorAll('.skills-cols .skill-box, .edu-grid .edu-card, .contact-cards .contact-card').forEach((el, i) => {
+    el.style.transitionDelay = (i * 0.1) + 's';
+  });
+
+  // Nav active highlight on scroll
+  const secs = document.querySelectorAll('section[id]');
+  const navAs = document.querySelectorAll('.nav-links a');
+
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    secs.forEach(s => { if (window.scrollY >= s.offsetTop - 100) cur = s.id; });
+    navAs.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + cur);
+    });
+  }, { passive: true });
+</script>
+</body>
+</html>
