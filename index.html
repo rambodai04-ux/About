@@ -276,7 +276,6 @@ nav {
 .ring-3 { inset: 36px; }
 
 @keyframes spin { to { transform: rotate(360deg); } }
-
 .monogram-center {
   position: absolute;
   inset: 54px;
@@ -284,10 +283,17 @@ nav {
   background: rgba(22, 22, 22, 0.92);
   border: 1px solid var(--border);
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.hero-profile {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .mono-letters {
@@ -837,7 +843,9 @@ footer {
   <div class="hero-content">
     <span class="hero-eyebrow">Portfolio • IT Student • Future Tech Professional</span>
     <h1 class="hero-name">Irab<br><em>Baral</em></h1>
-    <p class="hero-subtitle">Information Technology Student | Web Development & Cybersecurity</p>
+   <p class="hero-subtitle">
+Aspiring IT Support Specialist | Hands-on Technical Experience | Web & Cybersecurity
+</p>
     <div class="hero-divider"></div>
     <p class="hero-bio">
       I am an Information Technology student at Charles Darwin University with a strong interest in
@@ -856,10 +864,9 @@ footer {
       <div class="ring ring-1"></div>
       <div class="ring ring-2"></div>
       <div class="ring ring-3"></div>
-      <div class="monogram-center">
-        <div class="mono-letters">IB</div>
-        <div class="mono-sub">Darwin, NT</div>
-      </div>
+    <div class="monogram-center">
+  <img src="images/profile.jpg" alt="Irab Baral" class="hero-profile">
+</div>
     </div>
   </div>
 </section>
@@ -935,37 +942,49 @@ footer {
     <div class="section-tag">Capabilities</div>
     <h2 class="section-heading">Skills &amp; <em>Expertise</em></h2>
   </div>
+
   <div class="skills-cols">
+
+    <!-- TECHNICAL SKILLS -->
     <div class="skill-box reveal">
       <div class="skill-box-title">Technical Skills</div>
+
       <ul class="skill-items">
         <li>Microsoft Office Suite — Advanced Excel</li>
         <li>Microsoft Visio</li>
-        <li>Networking &amp; System Troubleshooting</li>
-        <li>Hardware Knowledge — Component Level</li>
+        <li>Hardware Diagnostics, Troubleshooting, and Basic Repair</li>
+        <li>Operating System Installation, Software Setup, and Updates</li>
+        <li>Basic Networking, LAN Setup, and Connectivity Troubleshooting</li>
+        <li>Printer Installation, Configuration, and Issue Resolution</li>
+        <li>CCTV Camera Installation and Technical Support</li>
+        <li>New PC Deployment, Setup, and System Configuration</li>
         <li>HTML, CSS, Bootstrap, JavaScript</li>
         <li>Node.js</li>
         <li>Version Control — Git</li>
-        <li>UX &amp; Interface Design</li>
-        <li>Agile &amp; Scrum Methodology</li>
+        <li>User Experience and Interface Design</li>
+        <li>Agile and Scrum Methodology</li>
         <li>SQL — MS Access, MySQL</li>
       </ul>
     </div>
+
+    <!-- PROFESSIONAL SKILLS -->
     <div class="skill-box reveal">
       <div class="skill-box-title">Professional Skills</div>
+
       <ul class="skill-items">
-        <li>Excellent Customer Service</li>
-        <li>Multitasking Under Pressure</li>
-        <li>Verbal &amp; Written Communication</li>
-        <li>Time Management</li>
-        <li>Team Leadership &amp; Mentoring</li>
-        <li>Staff Recruitment &amp; Training</li>
-        <li>Budget &amp; Revenue Oversight</li>
-        <li>Report Writing &amp; Documentation</li>
-        <li>Regulatory Compliance</li>
-        <li>Friendly &amp; Outgoing Disposition</li>
+        <li>Customer-Focused Technical Support</li>
+        <li>Clear Verbal and Written Communication</li>
+        <li>Problem Solving and Troubleshooting Mindset</li>
+        <li>Time Management and Task Prioritisation</li>
+        <li>Ability to Work Independently and in Teams</li>
+        <li>Staff Training and Support Guidance</li>
+        <li>Handling High-Pressure Work Environments</li>
+        <li>Attention to Detail and Accuracy</li>
+        <li>Adaptability and Quick Learning</li>
+        <li>Professional Work Ethic and Reliability</li>
       </ul>
     </div>
+
   </div>
 </section>
 
@@ -1019,7 +1038,31 @@ footer {
     </div>
   </div>
 </section>
+<!-- TECHNICAL EXPERIENCE -->
+<section id="technical">
+  <div class="reveal">
+    <div class="section-tag">Technical Experience</div>
+    <h2 class="section-heading">Hands-on <em>IT Experience</em></h2>
+  </div>
 
+  <div class="project-card reveal">
+    <h3 class="project-title">ICT Vocational Training & On-the-Job Experience</h3>
+
+    <p class="project-description">
+      Completed 4 years of vocational ICT education (Class 9–12), including 1 year of 
+      on-the-job training (OJT) focused on practical IT skills and real-world system support.
+    </p>
+
+    <ul class="tl-tasks">
+      <li>Diagnosed and repaired computer hardware issues and performed component-level troubleshooting.</li>
+      <li>Installed and configured operating systems, software applications, and system updates.</li>
+      <li>Set up and maintained printers, resolving common connectivity and performance issues.</li>
+      <li>Installed and configured CCTV camera systems for monitoring and security purposes.</li>
+      <li>Assisted in setting up and managing LAN networks, including basic networking configurations.</li>
+      <li>Performed new PC setups including hardware assembly, OS installation, and system configuration.</li>
+    </ul>
+  </div>
+</section>
 <!-- PROJECTS -->
 <section id="projects" class="project-wrap">
   <div class="reveal">
@@ -1027,33 +1070,44 @@ footer {
     <h2 class="section-heading">Selected <em>Work</em></h2>
   </div>
 
-  <div class="projects-container reveal">
+  <div class="project-card reveal" style="max-width: 800px; margin: auto;">
+
+    <!-- PROJECT 1 -->
     <div class="project-card">
       <img src="images/project1.jpg" alt="Navigation Menu Website" class="project-image">
+
       <div class="project-sponsor">University Project</div>
       <h3 class="project-title">Navigation Menu Website</h3>
+
       <p class="project-description">
         Developed a responsive website featuring a structured navigation menu for university coursework.
-        The project demonstrates clear content organisation, accessible navigation, and clean front-end layout design.
+        This project demonstrates strong problem-solving, logical structuring, and user-focused interface design.
       </p>
+
       <p class="project-tools"><strong>Tools:</strong> HTML, CSS</p>
+
       <a href="https://irabbaral.bitbucket.io/" target="_blank" class="project-link">View Project</a>
     </div>
 
+    <!-- PROJECT 2 -->
     <div class="project-card">
       <img src="images/project2.jpg" alt="Portfolio Website" class="project-image">
+
       <div class="project-sponsor">Personal Project</div>
       <h3 class="project-title">Portfolio Website</h3>
+
       <p class="project-description">
         Designed and developed a personal portfolio website to showcase projects, skills, and experience.
-        Built with a focus on clean layout, responsive structure, and professional presentation.
+        Built with a clean layout, responsive design, and professional presentation for real-world applications.
       </p>
+
       <p class="project-tools"><strong>Tools:</strong> HTML, CSS, JavaScript</p>
+
       <a href="https://irabbaral.com.np" target="_blank" class="project-link">View Project</a>
     </div>
+
   </div>
 </section>
-
 <!-- EDUCATION -->
 <section id="education">
   <div class="reveal">
@@ -1069,8 +1123,8 @@ footer {
     </div>
     <div class="edu-card reveal">
       <div class="edu-year">2024</div>
-      <div class="edu-degree">Diploma in Information Technology</div>
-      <div class="edu-school">Kings Ford International Institute</div>
+      <div class="edu-degree">Diploma And Advanced Diploma in Information Technology</div>
+      <div class="edu-school">KingsFord International Institute</div>
       <div class="edu-loc">Sydney, New South Wales, AU</div>
     </div>
     <div class="edu-card reveal">
